@@ -16,6 +16,13 @@ public class CustomRepository {
         return !entityManager.createQuery("select e from " + tableName + " e where e.id = " + id).getResultList().isEmpty();
     }
 
+    public boolean isUnique(String tableName, String columnName, Object value) {
+        return entityManager.createQuery("select e from  " + tableName + " e where LOWER(e." + columnName + ") = LOWER(:value)")
+                .setParameter("value", value)
+                .getResultList()
+                .isEmpty();
+    }
+
     public boolean isExist(String tableName, String columnName, Object value) {
         String sqlQuery = MessageFormat.format("select e from  {0} e where LOWER(e.{1}) = LOWER(:value)", tableName, columnName);
         return !entityManager.createQuery(sqlQuery)

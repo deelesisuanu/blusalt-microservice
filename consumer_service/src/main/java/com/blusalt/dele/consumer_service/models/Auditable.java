@@ -2,7 +2,11 @@ package com.blusalt.dele.consumer_service.models;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @Getter
@@ -11,6 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public abstract class Auditable<U> {
 
     protected U createdBy;

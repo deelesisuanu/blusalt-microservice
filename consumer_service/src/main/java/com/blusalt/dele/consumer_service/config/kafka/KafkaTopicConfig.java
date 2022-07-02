@@ -9,7 +9,7 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class KafkaTopicConfig {
 
-    @Value("${billing.kafka}")
+    @Value("${kafka_settings.billing}")
     private String bootstrapBilling;
 
     @Bean

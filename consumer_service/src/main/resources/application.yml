@@ -1,6 +1,11 @@
 kafka_settings:
   billing: blusalt_billing
 spring:
+  application:
+    name: 'consumer_service'
+  sql:
+    init:
+      mode: 'always'
   kafka:
     bootstrap-servers: 'localhost:9092'
   datasource:

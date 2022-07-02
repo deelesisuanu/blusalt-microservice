@@ -1,5 +1,6 @@
 package com.blusalt.dele.consumer_service.services;
 
+import com.blusalt.dele.consumer_service.aspects.TrackExecutionTime;
 import com.blusalt.dele.consumer_service.config.BaseConfig;
 import com.blusalt.dele.consumer_service.domain.request.ConsumerCreateRequest;
 import com.blusalt.dele.consumer_service.domain.request.ConsumerQueryRequest;
@@ -34,11 +35,13 @@ public class BaseService {
 
     private final BaseConfig baseConfig;
 
+    @TrackExecutionTime
     public ConsumerResponse createConsumer(ConsumerCreateRequest consumerCreateRequest) {
         Consumer consumer = baseRepository.save(baseConfig.modelMapper().map(consumerCreateRequest, Consumer.class));
         return baseConfig.modelMapper().map(consumer, ConsumerResponse.class);
     }
 
+    @TrackExecutionTime
     public PagedResponse<ConsumerResponse> queryConsumer(ConsumerQueryRequest consumerQueryRequest) {
         Map<String, Object> filter = objectMapper.convertValue(consumerQueryRequest, Map.class);
         if (filter.containsKey("consumerId")) {

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @ConditionalOnExpression("${aspect.enabled:true}")
 public class ExecutionTimeAdvice {
 
-    @Around("@annotation(com.mailshine.springboot.aop.aspectj.advise.TrackExecutionTime)")
+    @Around("@annotation(com.blusalt.dele.consumer_service.aspects.TrackExecutionTime)")
     public Object executionTime(ProceedingJoinPoint point) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object object = point.proceed();
